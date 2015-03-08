@@ -2,40 +2,36 @@
 
 var Backbone  = require('backbone');
 var nprogress = require('nprogress');
-var debug     = require('debug')('progress');
+var counter   = 0;
+var debounce  = 500;
+
+// Patch Backbone
+patch(Backbone.Collection.prototype, 'fetch');
+patch(Backbone.Model.prototype, 'fetch');
+patch(Backbone.Model.prototype, 'save');
 
 
-var progress = (function () {
-  var counter = 0;
-  var debouncer = 0;
-  var start = function() {
-    debug('start');
-    nprogress.start();
-  };
-  var done = function() {
-    debouncer && clearTimeout(debouncer);
-    debouncer = setTimeout(function() {
-      debug('done');
-      if (!counter) nprogress.done();
-    }, 500);
-  };
-  return {
-    push: function() {
-      counter++;
-      counter && start();
-    },
-    pop: function() {
-      --counter <= 0 && done();
-    }
-  };
-})();
+// Start progress
+function start() {
+  if (!++counter) nprogress.start();
+}
 
-var fetch = Backbone.Collection.prototype.fetch;
+// Finish progress
+function done() {
+  if (--counter > 0) return;
+  done.timer && clearTimeout(done.timer);
+  done.timer = setTimeout(function() {
+    if (!counter) nprogress.done();
+  }, debounce);
+}
 
-Backbone.Collection.prototype.fetch = function() {
-    progress.push();
-    return fetch.apply(this, arguments)
-      .then(progress.pop, progress.pop)
+// Patch given method
+function patch(parent, method) {
+  var original = parent[method];
+  return function() {
+    exports.start();
+    return original.apply(this, arguments)
+      .then(done, done)
     ;
-
-};
+  };
+}
