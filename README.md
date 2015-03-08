@@ -28,3 +28,7 @@ require('backbone-nprogress');
 ```
 
 [nprogress]: http://ricostacruz.com/nprogress/
+
+## License
+
+MIT

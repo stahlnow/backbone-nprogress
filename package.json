@@ -1,6 +1,6 @@
 {
-  "name": "nprogress-backbone",
-  "version": "0.0.1",
+  "name": "backbone-nprogress",
+  "version": "0.1.0",
   "description": "Show slim progress bars when your backbone collection are fetching",
   "main": "index.js",
   "scripts": {
@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/shuvalov-anton/nprogress-backbone.git"
+    "url": "https://github.com/shuvalov-anton/backbone-nprogress.git"
   },
   "keywords": [
     "backbone",
@@ -21,9 +21,9 @@
   "author": "Anton Shuvalov <anton@shuvalov.info>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/shuvalov-anton/nprogress-backbone/issues"
+    "url": "https://github.com/shuvalov-anton/backbone-nprogress/issues"
   },
-  "homepage": "https://github.com/shuvalov-anton/nprogress-backbone",
+  "homepage": "https://github.com/shuvalov-anton/backbone-nprogress",
   "devDependencies": {
     "backbone": "^1.1.2",
     "browserify": "^9.0.3",
@@ -32,7 +32,6 @@
     "underscore": "^1.8.2"
   },
   "dependencies": {
-    "debug": "^2.1.2",
     "nprogress": "^0.1.6"
   }
 }
