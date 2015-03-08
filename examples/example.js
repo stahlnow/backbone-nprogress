@@ -17,7 +17,7 @@ $(function() {
     showSpinner: false,
     speed: 500
   });
-  $('.js-fetch').on('click', function() {
+  $('.js-fetch-collection').on('click', function() {
     collection.fetch({ reset: true });
   });
 });
