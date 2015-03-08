@@ -1,15 +1,11 @@
 'use strict';
 
-const Backbone  = require('backbone');
-const nprogress = require('nprogress');
-const debug     = require('debug')('progress');
+var Backbone  = require('backbone');
+var nprogress = require('nprogress');
+var debug     = require('debug')('progress');
 
-nprogress.configure({
-  showSpinner: false,
-  speed: 500
-});
 
-let progress = (function () {
+var progress = (function () {
   var counter = 0;
   var debouncer = 0;
   var start = function() {
@@ -24,21 +20,22 @@ let progress = (function () {
     }, 500);
   };
   return {
-    push() {
+    push: function() {
       counter++;
       counter && start();
     },
-    pop() {
+    pop: function() {
       --counter <= 0 && done();
     }
   };
 })();
 
-Backbone.Collection = class Collection extends Backbone.Collection {
-  fetch(...args) {
+var fetch = Backbone.Collection.prototype.fetch;
+
+Backbone.Collection.prototype.fetch = function() {
     progress.push();
-    return super.fetch(...args)
+    return fetch.apply(this, arguments)
       .then(progress.pop, progress.pop)
     ;
-  }
+
 };
