@@ -44,7 +44,7 @@ patch(Backbone.Model.prototype, 'save');
 
 // Start progress
 function start() {
-  if (counter++) nprogress.start();
+  if (counter++ === 0) nprogress.start();
 }
 
 // Finish progress
@@ -59,8 +59,8 @@ function done() {
 // Patch given method
 function patch(parent, method) {
   var original = parent[method];
-  return function() {
-    exports.start();
+  parent[method] = function() {
+    start();
     return original.apply(this, arguments)
       .then(done, done)
     ;
