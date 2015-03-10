@@ -4,7 +4,7 @@ Show slim [nprogress bars][nprogress] when your backbone collections and models 
 
 [![nprogress](https://cloud.githubusercontent.com/assets/1410106/6543932/b4256638-c545-11e4-8081-a65e1877996e.png)][nprogress]
 
-[Demo](http://shuvalov-anton.github.io/nprogress-backbone/examples/)
+[Demo](http://shuvalov-anton.github.io/backbone-nprogress/examples/)
 
 ## Install
 
