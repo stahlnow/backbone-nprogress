@@ -31,7 +31,7 @@ function patch(parent, method) {
   parent[method] = function() {
     start();
     return original.apply(this, arguments)
-      .then(done, done)
+      .always(done)
     ;
   };
 }
