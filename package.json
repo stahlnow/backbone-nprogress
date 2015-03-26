@@ -1,6 +1,6 @@
 {
   "name": "backbone-nprogress",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Show slim progress bars when your backbone collection are fetching",
   "main": "index.js",
   "scripts": {
@@ -31,7 +31,7 @@
     "serve": "^1.4.0",
     "underscore": "^1.8.2"
   },
-  "dependencies": {
+  "peerDependencies": {
     "nprogress": "^0.1.6"
   }
 }

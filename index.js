@@ -30,7 +30,8 @@ function patch(parent, method) {
   var original = parent[method];
   parent[method] = function() {
     start();
-    return original.apply(this, arguments)
+    return original
+      .apply(this, arguments)
       .always(done)
     ;
   };
